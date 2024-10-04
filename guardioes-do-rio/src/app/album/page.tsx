@@ -39,8 +39,8 @@ export default function Home() {
                         />
                     </button>
                 </div>
-                <div onClick={() => router.push(`/sagui`)} className="flex justify-center space-x-4 mt-4">
-                    <button className="w-32 h-32 rounded-3xl shadow-2xl shadow-slate-400">
+                <div className="flex justify-center space-x-4 mt-4">
+                    <button onClick={() => router.push(`/sagui`)} className="w-32 h-32 rounded-3xl shadow-2xl shadow-slate-400">
                         <Image
                             src={Sagui}
                             alt="Sagui"
