@@ -1,0 +1,5 @@
+/api-guardioes-do-rio/__pycache__
+/api-guardioes-do-rio/alembic/__pycache__
+/api-guardioes-do-rio/alembic/versions/__pycache__
+/api-guardioes-do-rio/models/__pycache__
+node_modules

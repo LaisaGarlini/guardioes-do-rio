@@ -1,0 +1,26 @@
+gerar migracao - alembic revision --autogenerate -m "NOME DA MIGRACAO"
+
+atualizar banco - alembic upgrade head
+
+SELECT * FROM USUARIO
+
+INSERT INTO USUARIO (ID, NOME, EMAIL, SENHA, DATA_NASCIMENTO, TIPO, ATIVO) 
+VALUES (1, 'Laisa', 'laisa.garlini@hotmail.com', '123', '04/04/2003', 1, True)
+
+SELECT * FROM ESCOLA
+
+INSERT INTO ESCOLA (ID, NOME, ENDERECO, ATIVO) 
+VALUES (1, 'EEB Alfredo Dalfovo', 'R. Eng. Odebrecht, 295 - Budag, Rio do Sul - SC, 89165-412', TRUE)
+
+SELECT * FROM ANIMAL
+
+INSERT INTO ANIMAL (ID, NOME_COMUM, NOME_CIENTIFICO, HABITAT, DESCRICAO, ATIVO)
+VALUES (1, 'Capivara', 'Hydrochoerus hydrochaeris', 'Manguezais, savanas, lagos, rios e pântanos', 'A capivara é uma espécie de roedor nativa da América do Sul, com destaque para as regiões úmidas do Brasil. 
+                Este grande mamífero, que se caracteriza por seu porte robusto e pelo pelo áspero, apresenta coloração variada, geralmente em tons de marrom 
+                claro ou escuro. A capivara é conhecida por seu comportamento sociável e sua habilidade de nadar, graças às suas patas parcialmente membranosas, 
+                o que a torna adaptada a ambientes aquáticos como rios e lagos.', TRUE)
+				
+SELECT * FROM CUPOM
+
+INSERT INTO CUPOM (ID, CODIGO, ESCOLA_ID, ANIMAL_ID, ATIVO)
+VALUES (1, '12345678', 1, 1, TRUE)
