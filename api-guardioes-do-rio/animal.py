@@ -66,7 +66,6 @@ def animal_consulta():
 
         animals = PostgresConnection.select(query)
         
-        print(animals)
         return jsonify(animals), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
