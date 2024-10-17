@@ -10,7 +10,7 @@ export default function Perfil() {
     return (
         <div className="flex flex-col justify-center items-center min-h-screen m-4">
             <div>
-                <h1 className="text-blue-500 font-black text-xl m-5 p-1">MEU ÁLBUM</h1>
+                <h1 className="text-blue-500 font-black text-xl m-5 p-1">MEU PERFIL</h1>
             </div>
             <li className="flex items-center">
               <p className="ml-4 p-1">
