@@ -12,6 +12,7 @@ class Cupom(db.Model):
     animal_id = db.Column(db.Integer, db.ForeignKey('animal.id', name='fk_cupom_animal'), nullable=False)
     data_validade = db.Column(db.DateTime(timezone=False), server_default=db.text("NOW() + INTERVAL '7 days'"))
     ativo = db.Column(db.Boolean, default=True, nullable=False)
+    data_cadastro = db.Column(db.DateTime(timezone=False), server_default=db.text('CURRENT_TIMESTAMP'))
 
     __table_args__ = (
         PrimaryKeyConstraint('id', name='pk_cupom'),

@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 import psycopg2
 from psycopg2 import Error
 from animal import animal_cadastro, animal_consulta, animal_detalhes, animal_for_combo
+from cupom import cupom_consulta
 from connection import PostgresConnection
 from flask import Flask, jsonify, request
 
@@ -21,6 +22,11 @@ app.route('/animal_cadastro', methods=["POST"])(animal_cadastro)
 app.route('/animal_detalhes/<int:id>', methods=["GET"])(animal_detalhes)
 app.route('/animal_consulta', methods=["GET"])(animal_consulta)
 app.route('/animal_for_combo', methods=["GET"])(animal_for_combo)
+
+#cupom    
+# app.route('/cupom_cadastro', methods=["POST"])(cupom_cadastro)
+# app.route('/cupom_detalhes/<int:id>', methods=["GET"])(cupom_detalhes)
+app.route('/cupom_consulta', methods=["GET"])(cupom_consulta)
 
 @app.route('/login', methods=["GET"])
 def login():
