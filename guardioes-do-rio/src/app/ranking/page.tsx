@@ -39,8 +39,8 @@ export default function Ranking() {
                     <table>
                         <thead className='bg-green-300 rounded-sm'>
                             <tr>
-                            <th className="text-left w-32">ALUNO</th>
-                            <th className="text-right">TOTAL DE FIGURINHAS</th>
+                            <th className="text-left w-32 px-2">ALUNO</th>
+                            <th className="text-right px-2">TOTAL DE FIGURINHAS</th>
                             </tr>
                         </thead>
                         <tbody>
