@@ -33,10 +33,10 @@ def login():
     try:
         codigo = request.args.get('codigo')
         senha = request.args.get('senha')
-        query = "SELECT ID, SENHA, NOME FROM USUARIO WHERE ID = %s AND SENHA = %s"
+        query = "SELECT ID, SENHA, NOME, TIPO FROM USUARIO WHERE ID = %s AND SENHA = %s"
         result = PostgresConnection.select(query, codigo, senha)
         if result:
-            return jsonify({"success": "Dados de login corretos.", "result": {"nome" : result[0][2]}}), 200
+            return jsonify({"success": "Dados de login corretos.", "result": {"nome" : result[0][2], "tipo" : result[0][3]}}), 200
         else:
             return jsonify({"error": "Código ou senha incorretos."}), 401
     except Exception as e:
