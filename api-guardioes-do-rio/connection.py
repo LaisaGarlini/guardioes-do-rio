@@ -26,7 +26,7 @@ class PostgresConnection:
     def insert(cls, table, cols, values):
         try:
             with psycopg2.connect(
-                dbname='guardioes',
+                dbname='guardioes-do-rio',
                 user='postgres',
                 password='postgres',
                 host='localhost',
@@ -46,7 +46,7 @@ class PostgresConnection:
     def delete(cls, table, condition):
         try:
             with psycopg2.connect(
-                dbname='guardioes',
+                dbname='guardioes-do-rio',
                 user='postgres',
                 password='postgres',
                 host='localhost',
@@ -65,12 +65,13 @@ class PostgresConnection:
             conn.rollback()
             error_message = f"Erro durante DELETE: {e}"
             raise Exception(error_message)
+
             
     @classmethod
     def update(cls, table, set_clause, condition, *args):
         try:
             with psycopg2.connect(
-                dbname='guardioes',
+                dbname='guardioes-do-rio',
                 user='postgres',
                 password='postgres',
                 host='localhost',
