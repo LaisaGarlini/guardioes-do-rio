@@ -8,6 +8,7 @@ from animal import animal_cadastro, animal_consulta, animal_detalhes, animal_for
 from cupom import cupom_consulta
 from connection import PostgresConnection
 from flask import Flask, jsonify, request
+import logging
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/cofrinho'
@@ -16,6 +17,8 @@ migrate = Migrate(app, db)
 CORS(app)
 
 from models import animal, cupom_resgatado, cupom, escola, usuario
+
+logging.basicConfig(level=logging.DEBUG)
 
 #animal    
 app.route('/animal_cadastro', methods=["POST"])(animal_cadastro)
@@ -41,6 +44,34 @@ def login():
             return jsonify({"error": "Código ou senha incorretos."}), 401
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/excluir", methods=["POST"])
+def excluir():
+    try:
+        data = request.json
+        ids = data.get("IDs_selecionados")
+        tabela = data.get("Tabela")
+
+        if not ids:
+            return jsonify({"error": "IDs não fornecidos"}), 400
+
+        condition = f"ID IN ({', '.join(map(str, ids))})"
+        
+        logging.debug(f"Executando DELETE com condição: {condition} na tabela {tabela}")
+        
+        PostgresConnection.delete(tabela, condition)
+
+        return jsonify({"success": "Dados excluídos com sucesso."}), 200
+
+    except psycopg2.IntegrityError as e:
+        if "violates foreign key constraint" in str(e):
+            return jsonify({"error": "Não é possível excluir o cupom, pois ele está sendo referenciado em outra tabela."}), 400
+        else:
+            logging.error(f"Erro de integridade: {str(e)} - {e.pgerror}")
+            return jsonify({"error": f"Violação de integridade: {e.pgerror}"}), 400
+    except Exception as e:
+        logging.error(f"Erro inesperado: {str(e)}")
+        return jsonify({"error": f"Erro inesperado: {str(e)}"}), 500
     
 @app.route('/ranking', methods=["GET"])
 def ranking():
