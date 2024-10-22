@@ -77,7 +77,6 @@ export default function Cupom_Consulta() {
 
     useEffect(() => {
         carregarCupons();
-        toast.success("Teste de toast bem-sucedido!");
     }, []);
 
     return (
