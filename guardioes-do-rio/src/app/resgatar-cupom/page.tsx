@@ -7,16 +7,43 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
 import { useState } from 'react';
+import api from "../../services/api";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ResgatarCupom() {
     const router = useRouter();
     const [codigo, setCodigo] = useState('');
+    const usuario_id = localStorage.getItem('userId');
 
-    const resgatarCupom = () => {
-        if (codigo === '123') {
-            confetti();
-        } else {
-            alert('Código inválido. Tente novamente.');
+    const resgatarCupom = async () => {
+        if (!usuario_id) {
+            alert('Usuário não autenticado.');
+            return;
+        }
+
+        try {
+            const response = await api.post("/resgatar_cupom", {
+                codigo, usuario_id
+            });
+
+            if (response?.data?.success) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+                // toast.success(response.data.success);
+                
+                // Opcional: Redirecionar após um tempo
+                // setTimeout(() => {
+                //     router.push('/home'); // Redireciona para a página inicial
+                // }, 3000);
+            } else {
+                console.error('Resposta do servidor inválida:', response);
+            }
+        } catch (error: any) {
+            toast.error(error.response?.data?.error || 'Erro ao processar a requisição');
         }
     };
 

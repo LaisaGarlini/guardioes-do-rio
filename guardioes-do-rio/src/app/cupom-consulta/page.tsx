@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import api from "../../services/api";
-import { faCheck, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faHouse, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from "react-toastify"; 
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,6 +42,7 @@ export default function Cupom_Consulta() {
     }
 
     async function excluirSelecionados() {
+        console.log(selected)
         if (selected.length === 0) {
             toast.warning("Nenhum cupom selecionado para exclusão.");
             return;
@@ -84,7 +85,7 @@ export default function Cupom_Consulta() {
             <div className="flex justify-between items-center w-full max-w-4xl mb-6">
                 <h1 className="text-green-500 font-black text-2xl">CUPONS</h1>
                 <div className="flex space-x-4">
-                    <button onClick={() => router.push("/gerar-cupom")}>
+                    <button onClick={() => router.push("/cupom-cadastro")}>
                         <FontAwesomeIcon
                             icon={faPlus}
                             className="text-green-500 text-xl"
@@ -150,6 +151,11 @@ export default function Cupom_Consulta() {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="mt-10">
+                <button onClick={() => router.push('/home')} className="bg-green-300 hover:bg-green-400 w-12 h-12 rounded-full">
+                    <FontAwesomeIcon icon={faHouse} className="h-10 w-6 mb-2 text-green-500" />
+                </button>
             </div>
             <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
         </div>
