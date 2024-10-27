@@ -34,7 +34,7 @@ export default function ResgatarCupom() {
                 });
 
                 // toast.success(response.data.success);
-                
+
                 // Opcional: Redirecionar após um tempo
                 // setTimeout(() => {
                 //     router.push('/home'); // Redireciona para a página inicial
@@ -63,19 +63,20 @@ export default function ResgatarCupom() {
                 <div className="mt-10">
                     <div className="flex flex-col items-center">
                         <label htmlFor="codigo" className="text-purple-500 font-black">DIGITE ABAIXO O CÓDIGO QUE VOCÊ ENCONTROU</label>
-                        <input 
-                            type="text" 
-                            placeholder="Informe o código" 
+                        <input
+                            type="text"
+                            placeholder="Informe o código"
                             value={codigo}
                             onChange={(e) => setCodigo(e.target.value)}
-                            className="bg-purple-100 border border-purple-500 w-80 h-7 rounded-3xl p-1"
-                            style={{ textTransform: "uppercase" }} 
+                            className="bg-purple-100 border border-purple-500 w-80 h-10 rounded-3xl m-1 p-5 w-[100%]"
+                            style={{ textTransform: "uppercase" }}
                         />
-                        <button 
+                        <button
                             onClick={resgatarCupom}
-                            className="bg-purple-500 hover:bg-purple-600 w-80 h-8 rounded-3xl text-purple-50 mt-10">
+                            className="bg-purple-500 hover:bg-purple-600 w-[100%] h-12 rounded-3xl text-purple-50 mt-10 p-2 flex items-center justify-center">
                             RESGATAR
                         </button>
+
                     </div>
                 </div>
                 <div className="mt-10">
