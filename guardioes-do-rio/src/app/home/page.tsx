@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Logo from "@/app/assests/logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTicket, faImages, faRankingStar, faUser, faListOl } from '@fortawesome/free-solid-svg-icons';
+import { faTicket, faImages, faRankingStar, faUser, faListOl, faSchool } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -35,11 +35,11 @@ export default function Home() {
                         <p className="text-green-500">Resgatar Cupom</p>
                     </button>
                     <button
-                        onClick={() => router.push('/album')}
+                        onClick={() => router.push('/escola-cadastro')}
                         className="bg-purple-300 hover:bg-purple-400 w-32 h-32 rounded-3xl shadow-2xl shadow-slate-400 flex justify-center items-center flex-col transition duration-200"
                     >
-                        <FontAwesomeIcon icon={faImages} className="h-10 w-10 mb-2 text-purple-500" />
-                        <p className="text-purple-500">Ver álbum</p>
+                        <FontAwesomeIcon icon={faSchool} className="h-10 w-10 mb-2 text-purple-500" />
+                        <p className="text-purple-500">Cadastrar Escola</p>
                     </button>
                 </div>
 
