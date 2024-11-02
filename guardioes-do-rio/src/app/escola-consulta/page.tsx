@@ -15,8 +15,8 @@ export default function Escola_Consulta() {
 
     async function carregarEscolas() {
         try {
-            const response = await api.get("/escola_consulta"); // Ajuste a rota conforme necessário
-            setEscolas(response.data); // Armazena as escolas no estado
+            const response = await api.get("/escola_consulta");
+            setEscolas(response.data);
         } catch (error) {
             console.error("Erro ao carregar escolas:", error);
             toast.error("Erro ao carregar escolas.");
@@ -40,7 +40,7 @@ export default function Escola_Consulta() {
         try {
             const response = await api.post("/excluir", {
                 IDs_selecionados: selected,
-                Tabela: "ESCOLA" // Certifique-se de que o nome da tabela está correto
+                Tabela: "ESCOLA"
             });
 
             if (response.status === 200 && response.data.success) {
@@ -53,17 +53,15 @@ export default function Escola_Consulta() {
         } catch (error) {
             const err = error as any;
             if (err.response) {
-                console.log("Dados do erro:", err.response.data);
                 toast.error(err.response.data.error || "Erro inesperado.");
             } else {
-                console.error("Erro:", err.message);
                 toast.error("Erro inesperado.");
             }
         }
     }    
 
     useEffect(() => {
-        carregarEscolas(); // Carrega as escolas ao montar o componente
+        carregarEscolas();
     }, []);
 
     return (
@@ -71,17 +69,11 @@ export default function Escola_Consulta() {
             <div className="flex justify-between items-center w-full max-w-4xl mb-6">
                 <h1 className="text-green-500 font-black text-2xl">ESCOLAS</h1>
                 <div className="flex space-x-4">
-                    <button onClick={() => router.push("/escola-cadastro")}>
-                        <FontAwesomeIcon
-                            icon={faPlus}
-                            className="text-green-500 text-xl"
-                        />
+                    <button onClick={() => router.push("/escola-cadastro")} className="p-2">
+                        <FontAwesomeIcon icon={faPlus} className="text-green-500 text-xl" />
                     </button>
-                    <button onClick={excluirSelecionados}>
-                        <FontAwesomeIcon
-                            icon={faTrash}
-                            className="text-red-500 text-xl"
-                        />
+                    <button onClick={excluirSelecionados} className="p-2">
+                        <FontAwesomeIcon icon={faTrash} className="text-red-500 text-xl" />
                     </button>
                 </div>
             </div>
@@ -90,7 +82,7 @@ export default function Escola_Consulta() {
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                     <thead>
                         <tr className="bg-green-500 text-white">
-                            <th className="py-3 px-4 text-center w-4">
+                            <th className="py-3 px-2 text-center w-4">
                                 <input
                                     type="checkbox"
                                     checked={selected.length === escolas.length}
@@ -98,36 +90,33 @@ export default function Escola_Consulta() {
                                         if (selected.length === escolas.length) {
                                             setSelected([]);
                                         } else {
-                                            setSelected(escolas.map(escola => escola[0])); // Assume que o ID está na primeira posição
+                                            setSelected(escolas.map(escola => escola[0]));
                                         }
                                     }}
                                 />
                             </th>
-                            <th className="py-3 px-4 text-left">Nome</th>
-                            <th className="py-3 px-4 text-left">Endereço</th>
-                            <th className="py-3 px-4 text-left">Email</th>
-                            <th className="py-3 px-4 text-left">Celular</th>
-                            <th className="py-3 px-4 text-center">Ativo</th>
+                            <th className="py-3 px-2 text-left">Nome</th>
+                            <th className="py-3 px-2 text-left">Endereço</th>
+                            <th className="py-3 px-2 text-left">Email</th>
+                            <th className="py-3 px-2 text-left">Celular</th>
+                            <th className="py-3 px-2 text-center">Ativo</th>
                         </tr>
                     </thead>
                     <tbody>
                         {escolas.map((dados: any, index) => (
-                            <tr
-                                key={index}
-                                className="border-b last:border-none hover:bg-gray-100"
-                            >
-                                <td className="py-3 px-4 text-center">
+                            <tr key={index} className="border-b last:border-none hover:bg-gray-100">
+                                <td className="py-3 px-2 text-center">
                                     <input
                                         type="checkbox"
                                         checked={selected.includes(dados[0])}
                                         onChange={() => handleSelect(dados[0])}
                                     />
                                 </td>
-                                <td className="py-3 px-4">{dados[1]}</td>
-                                <td className="py-3 px-4">{dados[2]}</td>
-                                <td className="py-3 px-4">{dados[3]}</td>
-                                <td className="py-3 px-4">{dados[4]}</td>
-                                <td className="py-3 px-4 text-center">
+                                <td className="py-3 px-2">{dados[1]}</td>
+                                <td className="py-3 px-2">{dados[2]}</td>
+                                <td className="py-3 px-2">{dados[3]}</td>
+                                <td className="py-3 px-2">{dados[4]}</td>
+                                <td className="py-3 px-2 text-center">
                                     {dados[5] && (
                                         <FontAwesomeIcon
                                             icon={faCheck}
