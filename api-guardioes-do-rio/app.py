@@ -32,6 +32,11 @@ app.route('/cupom_cadastro', methods=["POST"])(cupom_cadastro)
 app.route('/cupom_consulta', methods=["GET"])(cupom_consulta)
 app.route('/resgatar_cupom', methods=["POST"])(resgatar_cupom)
 
+#escola
+@app.route('/escola_consulta', methods=["GET"])
+def escola_consulta_route():
+    return escola_consulta()
+    
 @app.route('/login', methods=["GET"])
 def login():
     try:
